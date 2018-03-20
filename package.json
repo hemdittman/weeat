@@ -9,6 +9,13 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.2",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.19.0",
+    "eslint-nibble": "^4.2.1",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
     "webpack-dev-server": "2.11.2"
   }
 }
