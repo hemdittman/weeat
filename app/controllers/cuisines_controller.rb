@@ -15,7 +15,7 @@ class CuisinesController < ApplicationController
   end
 
   def create
-    @cuisine = Cuisine.new(rest_params)
+    @cuisine = Cuisine.new(cuisine_params)
     if @cuisine.save
       render json: @cuisine
     else
@@ -24,7 +24,7 @@ class CuisinesController < ApplicationController
   end
 
   def update
-    if @cuisine.update(rest_params)
+    if @cuisine.update(cuisine_params)
       render json: @cuisine
     else
       render json: @cuisine.errors.messages
@@ -41,7 +41,7 @@ class CuisinesController < ApplicationController
 
   private
 
-  def rest_params
+  def cuisine_params
     params.permit(:name)
   end
 
