@@ -27,6 +27,23 @@ class ReviewsController < ApplicationController
     end
   end
 
+  # TODO consider adding users model and allow only the user that created the review to edit/delete it
+  def update
+    if @review.update(rating: review_params[:rating], comment: review_params[:comment])
+      render json: @review
+    else
+      render json: @review.errors.messages
+    end
+  end
+
+  def destroy
+    if @review.destroy
+      head :ok
+    else
+      render json: @review.errors.messages
+    end
+  end
+
   private
 
   def review_params

@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
 
-  validates :rating, :reviewer_name, presence: true
+  validates_presence_of :rating, :reviewer_name
   validates_numericality_of :rating, greater_than_or_equal_to: 0, less_than_or_equal_to: 3,
                             message: 'Rating value should be between 1 to 3'
 
