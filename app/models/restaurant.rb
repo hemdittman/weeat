@@ -8,8 +8,6 @@ class Restaurant < ApplicationRecord
 
 
   def calc_rating
-    reviews_ratings = reviews.map(&:rating)
-    self.rating = reviews_ratings.empty? ? nil : reviews_ratings.inject(:+) / reviews_ratings.size
-    save
+    self.rating = reviews.empty? ? nil: reviews.average(:rating).round
   end
 end
