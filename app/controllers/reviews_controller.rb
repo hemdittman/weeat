@@ -4,16 +4,11 @@ class ReviewsController < ApplicationController
   before_action :query_review, only: [:show, :update, :destroy]
 
   def index
-    @reviews = Review.where(restaurant_id: params[:restaurant_id]).all
-    render json: @reviews
+    render json: Review.where(restaurant_id: params.require(:restaurant_id)).all
   end
 
   def show
-    if @review
-      render json: @review
-    else
-      render json: {error: "not-found"}, status: 404
-    end
+    render json: @review
   end
 
   def create
@@ -27,7 +22,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # TODO consider adding users model and allow only the user that created the review to edit/delete it
   def update
     if @review.update(rating: review_params[:rating], comment: review_params[:comment])
       render json: @review
@@ -51,7 +45,9 @@ class ReviewsController < ApplicationController
   end
 
   def query_review
-    @review = Review.where(id: params[:id]).first
+    @review = Review.where(params.require(params[:id]))
+  rescue ActiveRecord::RecordNotFound => e
+    render json: { error: :not_found }, status: 404
   end
 
 end
