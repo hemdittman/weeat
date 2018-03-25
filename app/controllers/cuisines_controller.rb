@@ -2,20 +2,15 @@ class CuisinesController < ApplicationController
   before_action :query_cuisine, only: [:show, :update, :destroy]
 
   def index
-    @cuisines = Cuisine.all
-    render json: @cuisines
+    render json: Cuisine.all
   end
 
   def show
-    if @cuisine
-      render json: @cuisine
-    else
-      render json: {error: "not-found"}, status: 404
-    end
+    render json: @cuisine
   end
 
   def create
-    @cuisine = Cuisine.new(rest_params)
+    @cuisine = Cuisine.new(cuisine_params)
     if @cuisine.save
       render json: @cuisine
     else
@@ -24,7 +19,7 @@ class CuisinesController < ApplicationController
   end
 
   def update
-    if @cuisine.update(rest_params)
+    if @cuisine.update(cuisine_params)
       render json: @cuisine
     else
       render json: @cuisine.errors.messages
@@ -41,12 +36,14 @@ class CuisinesController < ApplicationController
 
   private
 
-  def rest_params
+  def cuisine_params
     params.permit(:name)
   end
 
   def query_cuisine
-    @cuisine = Cuisine.where(id: params[:id]).first
+    @cuisine = Cuisine.find(params.require(:id))
+  rescue ActiveRecord::RecordNotFound => e
+    render json: { error: :not_found }, status: 404
   end
 
 end
