@@ -2,16 +2,11 @@ class CuisinesController < ApplicationController
   before_action :query_cuisine, only: [:show, :update, :destroy]
 
   def index
-    @cuisines = Cuisine.all
-    render json: @cuisines
+    render json: Cuisine.all
   end
 
   def show
-    if @cuisine
-      render json: @cuisine
-    else
-      render json: {error: "not-found"}, status: 404
-    end
+    render json: @cuisine
   end
 
   def create
@@ -46,7 +41,9 @@ class CuisinesController < ApplicationController
   end
 
   def query_cuisine
-    @cuisine = Cuisine.where(id: params[:id]).first
+    @cuisine = Cuisine.find(params.require(:id))
+  rescue ActiveRecord::RecordNotFound => e
+    render json: { error: :not_found }, status: 404
   end
 
 end

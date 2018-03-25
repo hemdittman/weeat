@@ -2,16 +2,11 @@ class RestaurantsController < ApplicationController
   before_action :query_restaurant, only: [:show, :update, :destroy]
 
   def index
-    @restaurants = Restaurant.all
-    render json: @restaurants
+    render json: Restaurant.all
   end
 
   def show
-    if @restaurant
-      render json: @restaurant
-    else
-      render json: {error: "not-found"}, status: 404
-    end
+    render json: @restaurant
   end
 
   def create
@@ -46,7 +41,9 @@ class RestaurantsController < ApplicationController
   end
 
   def query_restaurant
-    @restaurant = Restaurant.where(id: params[:id]).first
+    @restaurant = Restaurant.find(params.require(:id))
+  rescue ActiveRecord::RecordNotFound => e
+    render json: { error: :not_found }, status: 404
   end
 
 end
