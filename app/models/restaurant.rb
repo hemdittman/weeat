@@ -6,9 +6,9 @@
 #  name                      :string           not null
 #  cuisine_id                :integer          not null
 #  rating                    :integer
-#  accepts_10bis             :boolean          default(FALSE)
+#  accepts_10bis             :boolean          not null
 #  address                   :string           not null
-#  max_delivery_time_minutes :integer          default(90)
+#  max_delivery_time_minutes :integer          not null
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #
