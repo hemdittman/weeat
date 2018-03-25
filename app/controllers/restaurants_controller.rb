@@ -41,7 +41,7 @@ class RestaurantsController < ApplicationController
   def query_restaurant
     @restaurant = Restaurant.find(params.require(:id))
   rescue ActiveRecord::RecordNotFound => e
-    render json: { error: :not_found }, status: 404
+    render json: { error: :not_found }, status: :not_found
   end
 
 end

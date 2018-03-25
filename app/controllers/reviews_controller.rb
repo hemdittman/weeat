@@ -12,21 +12,16 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.restaurant = params[:restaurant_id]
-
-    if @review.save
-      render json: @review
-    else
-      render json: @review.errors.messages
-    end
+    @review = Review.new
+    @review.restaurant_id = params[:restaurant_id]
+    update
   end
 
   def update
-    if @review.update(rating: review_params[:rating], comment: review_params[:comment])
+    if @review.update(review_params)
       render json: @review
     else
-      render json: @review.errors.messages
+      render json: @review.errors.messages, status: :bad_request
     end
   end
 
@@ -47,7 +42,7 @@ class ReviewsController < ApplicationController
   def query_review
     @review = Review.find_by!(id: params.require(:id), restaurant_id: params.require(:restaurant_id))
   rescue ActiveRecord::RecordNotFound => e
-    render json: { error: :not_found }, status: 404
+    render json: { error: :not_found }, status: :not_found
   end
 
 end

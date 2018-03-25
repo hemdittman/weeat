@@ -101,6 +101,49 @@ RSpec.describe ReviewsController, type: :controller do
   end
 
   describe '#update' do
-    context ''
+    let!(:review) { create(:review, restaurant: restaurant, rating: 1) }
+
+    context 'with valid params' do
+      it 'should update a review' do
+        post :update, params: { restaurant_id: restaurant.id, id: review.id, rating: 2, comment: 'comment'}
+        expect(response).to be_success
+        expect(review.reload.rating).to eq(2)
+        expect(review.reload.comment).to eq('comment')
+      end
+    end
+
+    context 'with invalid params' do
+      it 'should fail with rating lower than 1' do
+        post :update, params: { restaurant_id: restaurant.id, id: review.id, rating: 0 }
+        expect(response).to be_bad_request
+        expect(review.reload.rating).to eq 1
+      end
+
+      it 'should fail with rating greater than 3' do
+        post :update, params: { restaurant_id: restaurant.id, id: review.id, rating: 4 }
+        expect(response).to be_bad_request
+        expect(review.reload.rating).to eq 1
+      end
+
+      it 'should fail for empty rating' do
+        post :update, params: { restaurant_id: restaurant.id, id: review.id, rating: ''}
+        expect(response).to be_bad_request
+        expect(review.reload.rating).to eq 1
+      end
+
+      it 'should fail for empty reviewer' do
+        post :update, params: { restaurant_id: restaurant.id, id: review.id, rating: 2, reviewer_name: ''}
+        expect(response).to be_bad_request
+        expect(review.reload.reviewer_name).to be_present
+      end
+    end
+  end
+
+  describe '#destroy' do
+    it 'should destroy successfully' do
+      review = create(:review, restaurant: restaurant)
+      delete :destroy, params: { id: review.id, restaurant_id: restaurant.id}
+      expect(Review.exists?(id: review.id)).to be false
+    end
   end
 end

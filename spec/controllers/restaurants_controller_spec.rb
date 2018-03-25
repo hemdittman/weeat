@@ -111,8 +111,8 @@ RSpec.describe RestaurantsController, type: :controller do
         expect(response).to be_bad_request
       end
 
-      it 'should retrun en error for invalid cuisine_id' do
-        params[:cuisine_id] = cuisine.id + 1
+      it 'should return en error for invalid cuisine_id' do
+        params[:cuisine_id] = 10
         post :update, params: params
         expect(response).to be_bad_request
       end
