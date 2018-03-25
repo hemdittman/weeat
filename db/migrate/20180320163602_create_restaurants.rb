@@ -4,9 +4,9 @@ class CreateRestaurants < ActiveRecord::Migration[5.1]
       t.string :name, null: false
       t.integer :cuisine_id, null: false
       t.integer :rating
-      t.boolean :accepts_10bis, default: false
+      t.boolean :accepts_10bis, null: false
       t.string :address, null: false
-      t.integer :max_delivery_time_minutes, default: 90
+      t.integer :max_delivery_time_minutes, null: false
 
       t.timestamps
     end
