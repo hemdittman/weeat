@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20180321101111) do
     t.string "name", null: false
     t.integer "cuisine_id", null: false
     t.integer "rating"
-    t.boolean "accepts_10bis", default: false
+    t.boolean "accepts_10bis", null: false
     t.string "address", null: false
-    t.integer "max_delivery_time_minutes", default: 90
+    t.integer "max_delivery_time_minutes", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["accepts_10bis"], name: "index_restaurants_on_accepts_10bis"
