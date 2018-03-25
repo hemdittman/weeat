@@ -45,7 +45,7 @@ class ReviewsController < ApplicationController
   end
 
   def query_review
-    @review = Review.where(params.require(params[:id]))
+    @review = Review.find_by!(id: params.require(:id), restaurant_id: params.require(:restaurant_id))
   rescue ActiveRecord::RecordNotFound => e
     render json: { error: :not_found }, status: 404
   end

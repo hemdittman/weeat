@@ -20,7 +20,7 @@ class Review < ApplicationRecord
   after_save :update_restaurant_rating, if: proc { |review| review.rating_changed? }
   after_destroy :update_restaurant_rating
 
-  belongs_to :restaurant, dependent: :destroy
+  belongs_to :restaurant
 
   private
 

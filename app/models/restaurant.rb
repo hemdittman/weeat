@@ -19,10 +19,10 @@ class Restaurant < ApplicationRecord
   validates_inclusion_of :accepts_10bis, in: [true, false]
 
   belongs_to :cuisine
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
 
   def calc_rating
-    self.rating = reviews.empty? ? nil : reviews.average(:rating).round
+    self.rating = reviews.present? && reviews.average(:rating) ? reviews.average(:rating).round : nil
   end
 end
