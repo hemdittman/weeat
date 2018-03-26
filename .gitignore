@@ -27,3 +27,8 @@
 /.idea/workspace.xml
 /.idea/tasks.xml
 
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity
