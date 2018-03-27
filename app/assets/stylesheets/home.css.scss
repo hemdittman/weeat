@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'ProximaNova';
+  src: asset-url('fonts/ProximaNova-Bold.otf') format('opentype');
+}
+
+
+@font-face {
+  font-family: 'Roboto';
+  src: asset-url('fonts/RobotoCondensed-Regular.ttf') format('truetype');
+}
+
+
+.header {
+  background-image: url('weeat_bg.png');
+  background-size: cover;
+  background-position: center;
+  height: 375px;
+  width: 100%;
+
+  .title {
+    margin: 0 auto;
+    color: white;
+    font-size: 4rem;
+    margin-top: 4rem;
+    font-family: 'ProximaNova', Sans-Serif;
+  }
+
+  .form-group {
+    input {
+      width: 40%;
+      margin: 0 auto;
+    }
+  }
+
+  .btn-circle {
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.42;
+    border-radius: 15px;
+  }
+
+}
+.filter {
+  background-color: #dcdcdc;
+  height: 75px;
+}
+
+
+
