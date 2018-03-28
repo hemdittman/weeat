@@ -1,10 +1,10 @@
 class ReviewsController < ApplicationController
   # This controller is nested - its routes are under /restaurants/:restaurant_id/...
 
-  before_action :query_review, only: [:show, :update, :destroy]
+  before_action :query_review, only: %i[show update destroy]
 
   def index
-    render json: Review.where(restaurant_id: params.require(:restaurant_id)).all
+    render json: Review.where(restaurant_id: params.require(:restaurant_id))
   end
 
   def show
@@ -13,7 +13,6 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.restaurant = params[:restaurant_id]
 
     if @review.save
       render json: @review
@@ -41,7 +40,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.permit(:rating, :comment, :reviewer_name)
+    params.permit(:rating, :comment, :reviewer_name, :restaurant_id)
   end
 
   def query_review

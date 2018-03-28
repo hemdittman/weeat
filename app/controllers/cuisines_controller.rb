@@ -1,5 +1,5 @@
 class CuisinesController < ApplicationController
-  before_action :query_cuisine, only: [:show, :update, :destroy]
+  before_action :query_cuisine, only: %i[show update destroy]
 
   def index
     render json: Cuisine.all

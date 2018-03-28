@@ -41,10 +41,12 @@ ActiveRecord::Schema.define(version: 20180322085635) do
     t.string "reviewer_name"
     t.integer "rating"
     t.text "comment"
-    t.integer "restaurant_id", null: false
+    t.bigint "restaurant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["restaurant_id", "rating"], name: "index_reviews_on_restaurant_id_and_rating"
     t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
   end
 
+  add_foreign_key "reviews", "restaurants"
 end
