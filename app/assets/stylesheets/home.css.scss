@@ -3,6 +3,11 @@
   src: asset-url('fonts/ProximaNova-Bold.otf') format('opentype');
 }
 
+@font-face {
+  font-family: 'LyonText-Bold';
+  src: asset-url('fonts/LyonText-Bold.otf') format('opentype');
+}
+
 
 @font-face {
   font-family: 'Roboto';
@@ -14,21 +19,28 @@
   background-image: url('weeat_bg.png');
   background-size: cover;
   background-position: center;
-  height: 375px;
+  height: 350px;
   width: 100%;
+
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   .title {
     margin: 0 auto;
     color: white;
     font-size: 4rem;
-    margin-top: 4rem;
-    font-family: 'ProximaNova', Sans-Serif;
+    margin-top: 70px;
+    font-family: 'LyonText-Bold', Sans-Serif;
   }
 
   .form-group {
     input {
       width: 40%;
+      height: 40px;
       margin: 0 auto;
+      font-family: 'LyonText-Bold', sans-serif;
     }
   }
 
@@ -42,12 +54,10 @@
     line-height: 1.42;
     border-radius: 15px;
   }
-
-}
-.filter {
-  background-color: #dcdcdc;
-  height: 75px;
 }
 
-
-
+.search-bar {
+  margin-top: 45px;
+  background-color: #dcdcdcba;
+  height: 100px;
+}
