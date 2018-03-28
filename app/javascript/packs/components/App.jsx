@@ -19,7 +19,7 @@ class App extends React.Component {
     api = {
        restaurants: 'restaurants',
        cuisines: 'cuisines'
-    }
+    };
 
     apiFetch(endpoint, callback) {
         fetch(endpoint)
@@ -30,7 +30,7 @@ class App extends React.Component {
     render() {
         return(
             <div>
-                <Header />
+                <Header cuisines={this.state.cuisines}/>
             </div>
         )}
 }
