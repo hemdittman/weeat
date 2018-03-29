@@ -2,20 +2,23 @@
   "name": "weeat",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.3.1",
+    "@rails/webpacker": "^3.4.1",
     "babel-preset-react": "^6.24.1",
+    "bootstrap": "^4.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
     "babel-preset-stage-0": "^6.24.1",
-    "eslint": "^4.19.0",
+    "eslint": "^4.18.2",
     "eslint-nibble": "^4.2.1",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "webpack-dev-server": "2.11.2"
+    "webpack-cli": "^2.0.10",
+    "webpack-dev-server": "^2.11.1"
   }
 }
