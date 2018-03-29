@@ -2,11 +2,11 @@ class RestaurantsController < ApplicationController
   before_action :query_restaurant, only: [:show, :update, :destroy]
 
   def index
-    render json: Restaurant.all
+    render json: Restaurant.all.map(&:get_json)
   end
 
   def show
-    render json: @restaurant
+    render json: @restaurant.get_json
   end
 
   def create

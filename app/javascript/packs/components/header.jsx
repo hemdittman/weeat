@@ -2,10 +2,10 @@ import React from 'react';
 import {Row, FormGroup, FormControl, Col} from 'react-bootstrap'
 import {FloatingActionButton, MuiThemeProvider, SelectField, Slider} from 'material-ui';
 import StarRatingComponent from 'react-star-rating-component';
-import ReactBootstrapSlider from 'react-bootstrap-slider';
+// import ReactBootstrapSlider from 'react-bootstrap-slider';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
-function Header(props) {
+export default function Header(props) {
     return (
         <div className='header'>
             <Row>
@@ -36,7 +36,7 @@ function SearchBar(props) {
             </Col>
             <Col md={2}></Col>
             <Col md={4}>
-                <DeliveryTimeSlider />
+                {/*<DeliveryTimeSlider />*/}
             </Col>
         </Row>
     )
@@ -122,5 +122,3 @@ class DeliveryTimeSlider extends React.Component {
         );
     }
 }
-
-export default Header;

@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from "./header";
+import Body from "./body";
 
 
 class App extends React.Component {
@@ -31,6 +32,7 @@ class App extends React.Component {
         return(
             <div>
                 <Header cuisines={this.state.cuisines}/>
+                <Body restaurants={this.state.restaurants}/>
             </div>
         )}
 }

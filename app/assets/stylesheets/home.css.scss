@@ -14,7 +14,6 @@
   src: asset-url('fonts/RobotoCondensed-Regular.ttf') format('truetype');
 }
 
-
 .header {
   background-image: url('weeat_bg.png');
   background-size: cover;
@@ -73,4 +72,61 @@
       margin-bottom: 3px;
     }
   }
+}
+
+.restaurants-list {
+  height: calc(100vh - 350px);
+  background-color: whitesmoke;
+  padding-right: 0 !important;
+
+  .list-group-item {
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  .restaurant-title {
+    padding-left: 0 !important;
+
+    .restaurant-name {
+      font-size: 24px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .restaurant-address {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .logo10bis {
+    padding-left: 0 !important;
+  }
+
+  .restaurants-list-item {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .restaurant-item-rating {
+    margin-top: 4px;
+  }
+
+  .restaurant-small-title {
+    font-size: 14px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+
+  img {
+    height: 30px;
+    width: 30px;
+  }
+
 }

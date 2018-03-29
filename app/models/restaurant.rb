@@ -25,4 +25,10 @@ class Restaurant < ApplicationRecord
   def calc_rating
     self.rating = reviews.present? && reviews.average(:rating) ? reviews.average(:rating).round : nil
   end
+
+  def get_json
+    restaurant = self.as_json
+    restaurant[:reviews_count] = self.reviews.count
+    restaurant
+  end
 end
