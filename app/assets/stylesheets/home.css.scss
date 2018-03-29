@@ -93,9 +93,10 @@
 }
 
 .restaurants-list {
-  height: calc(100vh - 350px);
   background-color: whitesmoke;
   padding-right: 0 !important;
+  height: calc(100vh - 350px);
+  overflow: scroll;
 
   .list-group-item {
     margin-top: 2.5px;
@@ -146,5 +147,7 @@
     height: 30px;
     width: 30px;
   }
-
+  .col-md-3 {
+    padding-right: 0 !important;;
+  }
 }

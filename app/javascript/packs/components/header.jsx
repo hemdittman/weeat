@@ -96,8 +96,8 @@ class RatingFilter extends React.Component {
                                  name={'rating'}
                                  starCount={3}
                                  value={rating}
-                                 // starColor='#FFFF00'
-                                 starColor='#00BFA5'
+                                 starColor='#FFFF00'
+                                 // starColor='#00BFA5'
                                  onStarClick={this.onStarClick.bind(this)} />
             </div>
         )

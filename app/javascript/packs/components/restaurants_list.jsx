@@ -25,17 +25,17 @@ function RestaurantItem(props) {
         <ListGroupItem>
             <div className='restaurants-list-item'>
                 <Row>
-                    <Col md={8} className='restaurant-title'>
+                    <Col md={9} className='restaurant-title'>
                         <div className='restaurant-name'>{props.restaurant.name}</div>
                         <div className='restaurant-address'>{props.restaurant.address}</div>
                     </Col>
-                    <Col md={4} className='logo10bis'>
+                    <Col md={3} className='logo10bis'>
                         {tenbisImg}
                     </Col>
                 </Row>
                 <Row className={'divider'}/>
                 <Row>
-                    <Col md={8}>
+                    <Col md={9}>
                         <Row>
                             <StarRatingComponent className={'restaurant-item-rating'}
                                                  name={'rating'}
@@ -46,7 +46,7 @@ function RestaurantItem(props) {
                             <div className='restaurant-small-title'>({props.restaurant.reviews_count} {reviewsText})</div>
                         </Row>
                     </Col>
-                    <Col md={4}>
+                    <Col md={3}>
                         <Row>
                             <Image className='delivery-img' src='/images/delivery.png'/>
                             <div className='restaurant-small-title'>{props.restaurant.max_delivery_time_minutes} min.</div>
