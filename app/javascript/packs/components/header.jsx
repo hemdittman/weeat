@@ -1,8 +1,8 @@
 import React from 'react';
 import {Row, FormGroup, FormControl, Col} from 'react-bootstrap'
-import {FloatingActionButton, MuiThemeProvider, SelectField, Slider} from 'material-ui';
+import {FloatingActionButton, MuiThemeProvider, Checkbox} from 'material-ui';
 import StarRatingComponent from 'react-star-rating-component';
-// import ReactBootstrapSlider from 'react-bootstrap-slider';
+import Slider from 'rc-slider';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
 export default function Header(props) {
@@ -31,12 +31,14 @@ function SearchBar(props) {
             <Col md={4}>
                 <CuisineSearch cuisines={props.cuisines}/>
             </Col>
+            <Col md={4}>
+                <DeliveryTimeSlider />
+            </Col>
             <Col md={2}>
                 <RatingFilter />
             </Col>
-            <Col md={2}></Col>
-            <Col md={4}>
-                {/*<DeliveryTimeSlider />*/}
+            <Col md={2}>
+                <Filter10Bis />
             </Col>
         </Row>
     )
@@ -88,11 +90,16 @@ class RatingFilter extends React.Component {
         const { rating } = this.state;
 
         return (
-            <StarRatingComponent className={'select-rating'}
+            <div className='filter-min-rating'>
+                <div className='filter-title'>Minimum rating</div>
+                <StarRatingComponent className={'select-rating'}
                                  name={'rating'}
                                  starCount={3}
                                  value={rating}
+                                 // starColor='#FFFF00'
+                                 starColor='#00BFA5'
                                  onStarClick={this.onStarClick.bind(this)} />
+            </div>
         )
     }
 }
@@ -102,23 +109,68 @@ class DeliveryTimeSlider extends React.Component {
         super();
 
         this.state = {
-            sliderValue: 30
+            sliderValue: 20
         }
     }
 
-    handleSliderChange = (event, value) => {
+    handleSliderChange = (value) => {
         this.setState({sliderValue: value});
     };
 
     render() {
-        return (
-                <ReactBootstrapSlider
-                    value={this.state.sliderValue}
-                    slideStop={this.handleSliderChange}
-                    step={15}
-                    max={120}
-                    min={0}/>
+        const selectedColor = '#00BFA5';
+        const trackStyle = { backgroundColor: selectedColor };
+        const handleStyle = { borderColor: selectedColor };
+        const activeDotStyle = { borderColor: selectedColor};
+        const railStyle = { backgroundColor: 'white' };
 
+        return (
+            <div className='select-max-delivery'>
+                <div className='filter-title'>Maximum delivery time: {this.state.sliderValue} min.</div>
+                <Slider
+                        min={0}
+                        max={120}
+                        defaultValue={20}
+                        handleStyle={handleStyle}
+                        onChange={this.handleSliderChange}
+                        activeDotStyle={activeDotStyle}
+                        trackStyle={trackStyle}
+                        railStyle={railStyle} />
+            </div>
+        );
+    }
+}
+
+class Filter10Bis extends React.Component {
+    constructor() {
+        super();
+
+        this.state = {
+            checked: false
+        }
+    }
+
+    handleCheckChange = () => {
+        this.setState({checked: !this.state.checked});
+    };
+
+    render() {
+        const styles = {
+            block: {
+                maxWidth: 250,
+            },
+            checkbox: {
+                marginTop: 40,
+            }};
+        return (
+            <MuiThemeProvider>
+                <Checkbox label="Only 10Bis?"
+                          checked={this.state.checked}
+                          labelStyle={{color: 'black', fontFamily: 'sans-serif', marginLeft: -13}}
+                          iconStyle={{fill: this.state.checked ? '#00BFA5' : 'black'}}
+                          onCheck={this.handleCheckChange.bind(this)}
+                          style={styles.checkbox}/>
+            </MuiThemeProvider>
         );
     }
 }

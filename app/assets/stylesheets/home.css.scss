@@ -1,3 +1,5 @@
+@import 'rc-slider/assets/index.css';
+
 @font-face {
   font-family: 'ProximaNova';
   src: asset-url('fonts/ProximaNova-Bold.otf') format('opentype');
@@ -57,20 +59,36 @@
 
 .search-bar {
   margin-top: 45px;
-  background-color: #dcdcdcba;
+  background-color: #dcdcdcd1;
   height: 100px;
 
   .select-cuisine {
     margin-top: 30px;
   }
 
-  .select-rating {
-    margin-top: 25px;
-    font-size: 30px;
-    i {
-      margin-left: 3px;
-      margin-bottom: 3px;
+  .filter-min-rating {
+    margin-top: 20px;
+
+    .select-rating {
+      margin-top: -20px;
+      font-size: 30px;
+
+      i {
+        margin-left: 3px;
+        margin-bottom: 3px;
+      }
     }
+  }
+
+  .select-max-delivery {
+    margin: 20px;
+    width: 300px;
+  }
+
+  .filter-title {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
   }
 }
 
