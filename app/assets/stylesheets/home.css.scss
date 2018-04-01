@@ -128,7 +128,7 @@
 
   .cuisine-icon {
     font-family: 'ef_cuisinesregular', sans-serif;
-    font-size: 3em;
+    font-size: 40px;
   }
 
   .restaurant-title {
@@ -143,7 +143,7 @@
     }
 
     .restaurant-address {
-      font-size: 16px;
+      font-size: 15px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -152,6 +152,8 @@
 
   .logo10bis {
     padding-left: 0 !important;
+    display:flex;
+    align-items:center;
   }
 
   .restaurants-list-item {
