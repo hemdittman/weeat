@@ -10,28 +10,25 @@ class CuisinesController < ApplicationController
   end
 
   def create
-    @cuisine = Cuisine.new(cuisine_params)
-    if @cuisine.save
-      render json: @cuisine
-    else
-      render json: @cuisine.errors.messages
-    end
+    @cuisine = Cuisine.new
+    update
   end
 
   def update
     if @cuisine.update(cuisine_params)
       render json: @cuisine
     else
-      render json: @cuisine.errors.messages
+      render json: @cuisine.errors.messages, status: :bad_request
     end
+  rescue ActiveRecord::RecordNotUnique => e
+    render json: { error: 'Cuisine with this name already exists' }, status: :bad_request
   end
 
   def destroy
-    if @cuisine.destroy
-      head :ok
-    else
-      render json: @cuisine.errors.messages
-    end
+    @cuisine.destroy!
+    head :ok
+  rescue ActiveRecord::DeleteRestrictionError
+    render json: @cuisine.errors.messages, status: :bad_request
   end
 
   private
@@ -43,7 +40,7 @@ class CuisinesController < ApplicationController
   def query_cuisine
     @cuisine = Cuisine.find(params.require(:id))
   rescue ActiveRecord::RecordNotFound => e
-    render json: { error: :not_found }, status: 404
+    render json: { error: :not_found }, status: :not_found
   end
 
 end

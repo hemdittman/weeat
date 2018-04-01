@@ -10,20 +10,18 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(rest_params)
-    if @restaurant.save
-      render json: @restaurant
-    else
-      render json: @restaurant.errors.messages
-    end
+    @restaurant = Restaurant.new
+    update
   end
 
   def update
     if @restaurant.update(rest_params)
       render json: @restaurant
     else
-      render json: @restaurant.errors.messages
+      render json: @restaurant.errors.messages, status: :bad_request
     end
+  rescue ActiveRecord::RecordNotUnique => e
+    render json: { error: 'Restaurant with these name and address already exists' }, status: :bad_request
   end
 
   def destroy
@@ -43,7 +41,7 @@ class RestaurantsController < ApplicationController
   def query_restaurant
     @restaurant = Restaurant.find(params.require(:id))
   rescue ActiveRecord::RecordNotFound => e
-    render json: { error: :not_found }, status: 404
+    render json: { error: :not_found }, status: :not_found
   end
 
 end
