@@ -43,7 +43,11 @@ class App extends React.Component {
     };
 
     applyFilter(rest) {
-        if (this.state.selectedCuisines.length > 0 && !this.state.selectedCuisines.some(item => item.value == rest.cuisine_id)) {
+        if (this.state.restaurantFilter && rest.name.toLowerCase().search(
+            this.state.restaurantFilter.toLowerCase()) === -1) {
+            return false;
+        } else if (this.state.selectedCuisines.length > 0 && !this.state.selectedCuisines.some(
+            item => item.value == rest.cuisine_id)) {
             return false;
         } else if (rest.max_delivery_time_minutes > this.state.maxDeliveryTime) {
             return false;
@@ -64,6 +68,7 @@ class App extends React.Component {
                         maxDeliveryTime={this.state.maxDeliveryTime}
                         rating={this.state.rating}
                         only10Bis={this.state.only10bis}
+                        restaurantsFilter={this.state.restaurantFilter}
                         onFilterChange={this.handleFilterChange.bind(this)}/>
                 <Body restaurants={this.state.filteredRestaurants}/>
             </div>
@@ -76,17 +81,22 @@ function Header(props) {
             <Row>
                 <div className='title'>we eat</div>
             </Row>
-            <RestaurantSearch />
+            <RestaurantSearch restaurantsFilter={props.restaurantFilter}
+                              onFilterChange={props.onFilterChange}/>
             <SearchBar cuisines={props.cuisines}
                        onFilterChange={props.onFilterChange}/>
         </div>
     );
 }
 
-function RestaurantSearch() {
+function RestaurantSearch(props) {
     return(
         <FormGroup>
-            <FormControl type='text' placeholder='Search Restaurant...' />
+            <FormControl type='text'
+                         placeholder='Search Restaurant...'
+                         onChange={(e) => {
+                             props.onFilterChange({restaurantFilter: e.target.value});
+                         }} />
         </FormGroup>
     )
 }
