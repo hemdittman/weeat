@@ -100,7 +100,7 @@ class RatingFilter extends React.Component {
 
         return (
             <div className='filter-min-rating'>
-                <div className='filter-title'>Minimum rating</div>
+                <div className='filter-title'>Minimal rating</div>
                 <StarRatingComponent className={'select-rating'}
                                      name={'rating'}
                                      starCount={3}
@@ -137,7 +137,7 @@ class DeliveryTimeSlider extends React.Component {
 
         return (
             <div className='select-max-delivery'>
-                <div className='filter-title'>Maximum delivery time: {this.state.sliderValue} min.</div>
+                <div className='filter-title'>Max delivery time: {this.state.sliderValue} min.</div>
                 <Slider
                     min={0}
                     max={120}
