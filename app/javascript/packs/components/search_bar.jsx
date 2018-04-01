@@ -19,22 +19,28 @@ export default class SearchBar extends React.Component {
     render() {
         return (
             <Row className='search-bar'>
-                <Col md={4}>
+                <Col md={2} />
+                <Col md={3}>
                     <SelectCuisines cuisines={this.props.cuisines}
                                     onFilterChange={this.props.onFilterChange}
                                     selectedValue={this.state.cuisineID} />
                 </Col>
-                <Col md={4}>
+                <Col md={3}>
                     <DeliveryTimeSlider onFilterChange={this.props.onFilterChange}
                                         selectedValue={this.state.maxDeliveryTime} />
                 </Col>
-                <Col md={2}>
-                    <RatingFilter onFilterChange={this.props.onFilterChange}
-                                  selectedValue={this.state.rating} />
-                </Col>
-                <Col md={2}>
-                    <Filter10Bis onFilterChange={this.props.onFilterChange}
-                                 selectedValue={this.state.only10bis} />
+                <Col md={4}>
+                    <Row>
+                        <Col md={4} >
+                            <RatingFilter onFilterChange={this.props.onFilterChange}
+                                          selectedValue={this.state.rating} />
+
+                        </Col>
+                        <Col md={8} >
+                        <Filter10Bis onFilterChange={this.props.onFilterChange}
+                                     selectedValue={this.state.only10bis} />
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
         );
@@ -58,7 +64,6 @@ class SelectCuisines extends React.Component {
     render() {
         const options = this.props.cuisines.map(cuisine => {
             return {label: cuisine.name, value: cuisine.id};
-            // return (<option key={cuisine.id} value={cuisine.id}>{cuisine.name}</option>)
         });
         return (
             <Select className={'filter-cuisine'}
@@ -165,9 +170,6 @@ class Filter10Bis extends React.Component {
 
     render() {
         const styles = {
-            block: {
-                maxWidth: 250,
-            },
             checkbox: {
                 marginTop: 40,
             }};
