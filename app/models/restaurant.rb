@@ -22,7 +22,7 @@ class Restaurant < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
 
-  def calc_rating
+  def update_rating
     self.rating = self&.reviews.average(:rating) ? reviews.average(:rating).round : nil
     self.update!(rating: rating)
   end
