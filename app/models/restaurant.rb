@@ -27,9 +27,4 @@ class Restaurant < ApplicationRecord
     self.update!(rating: rating)
   end
 
-  def get_json
-    restaurant = self.as_json
-    restaurant[:reviews_count] = self.reviews.count
-    restaurant
-  end
 end

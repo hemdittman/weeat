@@ -2,20 +2,20 @@
 @import 'react-select/dist/react-select.css';
 
 @font-face {
-  font-family: 'ProximaNova';
-  src: asset-url('fonts/ProximaNova-Bold.otf') format('opentype');
-}
-
-@font-face {
   font-family: 'LyonText-Bold';
   src: asset-url('fonts/LyonText-Bold.otf') format('opentype');
 }
-
 
 @font-face {
   font-family: 'Roboto';
   src: asset-url('fonts/RobotoCondensed-Regular.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'ef_cuisinesregular';
+  src: asset-url('fonts/efcuisines-regular-webfont.ttf') format('truetype');
+}
+
 
 .header {
   background-image: url('weeat_bg.png');
@@ -118,17 +118,24 @@
   overflow: scroll;
 
   .list-group-item {
+    padding-left: 6px !important;
+    padding-right: 0 !important;
     margin-top: 2.5px;
     margin-bottom: 2.5px;
     margin-right: 5px;
     margin-left: 5px;
   }
 
+  .cuisine-icon {
+    font-family: 'ef_cuisinesregular', sans-serif;
+    font-size: 3em;
+  }
+
   .restaurant-title {
     padding-left: 0 !important;
 
     .restaurant-name {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 600;
       white-space: nowrap;
       overflow: hidden;
@@ -136,6 +143,7 @@
     }
 
     .restaurant-address {
+      font-size: 16px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

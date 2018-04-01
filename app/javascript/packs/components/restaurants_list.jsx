@@ -25,7 +25,10 @@ function RestaurantItem(props) {
         <ListGroupItem>
             <div className='restaurants-list-item'>
                 <Row>
-                    <Col md={9} className='restaurant-title'>
+                    <Col md={2}>
+                        <div className={'cuisine-icon'}>{props.restaurant.cuisine.icon}</div>
+                    </Col>
+                    <Col md={7} className='restaurant-title'>
                         <div className='restaurant-name'>{props.restaurant.name}</div>
                         <div className='restaurant-address'>{props.restaurant.address}</div>
                     </Col>
@@ -33,9 +36,9 @@ function RestaurantItem(props) {
                         {tenbisImg}
                     </Col>
                 </Row>
-                <Row className={'divider'}/>
                 <Row>
-                    <Col md={9}>
+                    <Col md={2}/>
+                    <Col md={7}>
                         <Row>
                             <StarRatingComponent className={'restaurant-item-rating'}
                                                  name={'rating'}
@@ -43,7 +46,7 @@ function RestaurantItem(props) {
                                                  emptyStarColor={'#dcdcdc'}
                                                  value={props.restaurant.rating}
                                                  editing={false}/>
-                            <div className='restaurant-small-title'>({props.restaurant.reviews_count} {reviewsText})</div>
+                            <div className='restaurant-small-title'>({props.restaurant.review_ids.length} {reviewsText})</div>
                         </Row>
                     </Col>
                     <Col md={3}>

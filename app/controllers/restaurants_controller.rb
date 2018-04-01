@@ -2,11 +2,11 @@ class RestaurantsController < ApplicationController
   before_action :query_restaurant, only: [:show, :update, :destroy]
 
   def index
-    render json: Restaurant.all.map(&:get_json)
+    render json: Restaurant.all.map { |rest| serialize_restaurant(rest) }
   end
 
   def show
-    render json: @restaurant.get_json
+    render json: serialize_restaurant(@restaurant)
   end
 
   def create
@@ -16,7 +16,7 @@ class RestaurantsController < ApplicationController
 
   def update
     if @restaurant.update(rest_params)
-      render json: @restaurant
+      render json: serialize_restaurant(@restaurant)
     else
       render json: @restaurant.errors.messages, status: :bad_request
     end
@@ -42,6 +42,10 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params.require(:id))
   rescue ActiveRecord::RecordNotFound => e
     render json: { error: :not_found }, status: :not_found
+  end
+
+  def serialize_restaurant(rest)
+    rest.as_json(include: :cuisine, methods: :review_ids)
   end
 
 end

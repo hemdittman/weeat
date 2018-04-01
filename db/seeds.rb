@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-cuisine_types = [:italian, :french, :salads, :japanese, :hamburger, :bar, :indian, :seafood]
-cuisines = cuisine_types.map { |name| Cuisine.create!(name: name) }
+cuisine_types = %i[italian french salads japanese hamburger bar indian seafood]
+cuisines = cuisine_types.each_with_index.map { |name, i| Cuisine.create!(name: name, icon: i) }
 
 rests = []
 25.times do
