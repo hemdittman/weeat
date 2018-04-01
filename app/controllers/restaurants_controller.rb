@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :query_restaurant, only: [:show, :update, :destroy]
+  before_action :query_restaurant, only: %i[show update destroy]
 
   def index
     render json: Restaurant.all.map { |rest| serialize_restaurant(rest) }

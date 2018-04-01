@@ -89,9 +89,12 @@ RSpec.describe RestaurantsController, type: :controller do
     context 'with valid params' do
       it 'should update a restaurant with new values' do
         cuisine = create(:cuisine)
-        updated_params = { id: restaurant.id, name: 'new_name', address: 'new address',
+        updated_params = { id: restaurant.id,
+                           name: 'new_name',
+                           address: 'new address',
                            max_delivery_time_minutes: restaurant.max_delivery_time_minutes + 10,
-                           accepts_10bis: !restaurant.accepts_10bis, cuisine_id: cuisine.id }
+                           accepts_10bis: !restaurant.accepts_10bis,
+                           cuisine_id: cuisine.id }
         post :update, params: updated_params
         expect(response).to be_success
         expect(restaurant.reload.as_json.symbolize_keys.except(:created_at, :updated_at, :rating)).to eq(updated_params)

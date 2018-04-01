@@ -13,11 +13,11 @@
 
 class Review < ApplicationRecord
 
-  validates_presence_of :rating, :reviewer_name
-  validates_numericality_of :rating, greater_than_or_equal_to: 1, less_than_or_equal_to: 3,
-                            message: 'Rating value should be between 1 to 3'
+  validates :rating, :reviewer_name, presence: true
+  validates :rating, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 3,
+                                     message: 'Rating value should be between 1 to 3' }
 
-  after_save :update_restaurant_rating, if: proc { |review| review.saved_change_to_rating? }
+  after_save :update_restaurant_rating, if: :saved_change_to_rating?
   after_destroy :update_restaurant_rating
 
   belongs_to :restaurant
