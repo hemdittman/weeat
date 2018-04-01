@@ -23,6 +23,6 @@ class Restaurant < ApplicationRecord
 
 
   def calc_rating
-    self.rating = reviews.present? && reviews.average(:rating) ? reviews.average(:rating).round : nil
+    self.rating = self&.reviews.average(:rating) ? reviews.average(:rating).round : nil
   end
 end
