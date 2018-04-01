@@ -22,8 +22,9 @@ class Restaurant < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
 
-  def calc_rating
-    self.rating = reviews.present? && reviews.average(:rating) ? reviews.average(:rating).round : nil
+  def update_rating
+    rating = reviews.present? && reviews.average(:rating) ? reviews.average(:rating).round : nil
+    self.update!(rating: rating)
   end
 
   def get_json

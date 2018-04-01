@@ -1,4 +1,5 @@
 @import 'rc-slider/assets/index.css';
+@import 'react-select/dist/react-select.css';
 
 @font-face {
   font-family: 'ProximaNova';
@@ -64,6 +65,24 @@
 
   .select-cuisine {
     margin-top: 30px;
+  }
+
+  .filter-cuisine {
+    margin-top: 30px;
+
+    .Select-value {
+      border-color: #00BFA5;
+    }
+
+    .Select-value-label {
+      border-color: #00BFA5;
+      color: #00BFA5;
+    }
+
+    .Select-value-icon {
+      border-right-color: #00BFA53D;
+      color: #00BFA5;
+    }
   }
 
   .filter-min-rating {

@@ -25,6 +25,6 @@ class Review < ApplicationRecord
   private
 
   def update_restaurant_rating
-    restaurant.calc_rating
+    restaurant.update_rating
   end
 end

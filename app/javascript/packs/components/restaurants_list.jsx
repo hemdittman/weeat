@@ -2,7 +2,7 @@ import React from 'react';
 import {Col, Image, ListGroup, ListGroupItem, Row} from "react-bootstrap";
 import StarRatingComponent from 'react-star-rating-component';
 
-export function RestaurantsList(props) {
+export default function RestaurantsList(props) {
 
     const restaurantsList = props.restaurants.map(restaurant => {
         return (<RestaurantItem key={restaurant.id} restaurant={restaurant}/>)
