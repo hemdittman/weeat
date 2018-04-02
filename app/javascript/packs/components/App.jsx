@@ -17,7 +17,8 @@ class App extends React.Component {
             rating: 0,
             only10bis: false,
             restaurantFilter: '',
-            mapPosition: {lat: 40.732013, lng: -73.996155}
+            mapPosition: {lat: 40.732013, lng: -73.996155},
+            selectedRestaurant: null
         };
     }
 
@@ -62,7 +63,12 @@ class App extends React.Component {
     };
 
     handleRestaurantClick = (rest) => {
-        this.setState({mapPosition: {lat: rest.latitude, lng: rest.longitude}})
+        if (this.state.selectedRestaurant === rest) {
+            this.setState({selectedRestaurant: null})
+        } else {
+            this.setState({mapPosition: {lat: rest.latitude, lng: rest.longitude},
+                           selectedRestaurant: rest})
+        }
     };
 
 
@@ -78,6 +84,7 @@ class App extends React.Component {
                         onFilterChange={this.handleFilterChange.bind(this)}/>
                 <Body restaurants={this.state.filteredRestaurants}
                       mapPosition={this.state.mapPosition}
+                      selectedRestaurant={this.state.selectedRestaurant}
                       onRestaurantClick={this.handleRestaurantClick.bind(this)} />
             </div>
         )
@@ -115,6 +122,7 @@ function Body(props) {
             <Row>
                 <Col md={4} className='restaurants-list'>
                     <RestaurantsList restaurants={props.restaurants}
+                                     selectedRestaurant={props.selectedRestaurant}
                                      onRestaurantClick={props.onRestaurantClick} />
                 </Col>
                 <Col md={8} className='restaurants-map'>
@@ -124,6 +132,7 @@ function Body(props) {
                         containerElement={<div style={{height: '100%'}} />}
                         mapElement={<div style={{height: '100%'}} />}
                         center={props.mapPosition}
+                        selectedRestaurant={props.selectedRestaurant}
                         restaurants={props.restaurants}/>
                 </Col>
             </Row>

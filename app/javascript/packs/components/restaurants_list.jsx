@@ -7,6 +7,7 @@ export default function RestaurantsList(props) {
     const restaurantsList = props.restaurants.map(restaurant => {
         return (<RestaurantItem key={restaurant.id}
                                 restaurant={restaurant}
+                                disabled={props.selectedRestaurant && props.selectedRestaurant === restaurant}
                                 onRestaurantClick={props.onRestaurantClick}
         />)
     });
@@ -22,10 +23,10 @@ function RestaurantItem(props) {
     const reviewsText = props.restaurant.reviews_count == 1 ? 'review' : 'reviews';
     const tenbisImg = props.restaurant.accepts_10bis ?
         <Image className='tenbis-img' src='/images/logo10Bis.png' rounded/> : '';
+    const className = 'restaurants-list-item' + (props.disabled ? ' disabled' : '');
 
     return (
-        <ListGroupItem onClick={() => props.onRestaurantClick(props.restaurant)}>
-            <div className='restaurants-list-item'>
+            <div className={className} onClick={() => props.onRestaurantClick(props.restaurant)}>
                 <Row>
                     <Col md={2}>
                         <div className={'cuisine-icon'}>{props.restaurant.cuisine.icon}</div>
@@ -52,14 +53,13 @@ function RestaurantItem(props) {
                         </Row>
                     </Col>
                     <Col md={3}>
-                        <Row>
+                        <Row className={'restaurant-item-delivery'}>
                             <Image className='delivery-img' src='/images/delivery.png'/>
                             <div className='restaurant-small-title'>{props.restaurant.max_delivery_time_minutes} min.</div>
                         </Row>
                     </Col>
                 </Row>
             </div>
-        </ListGroupItem>
     )
 
 }

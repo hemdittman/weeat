@@ -9,7 +9,7 @@ class ZomatoAPIManager
   end
 
   def get_cuisines
-    res = zamato_api_call(endpoint: 'cuisines', params: { city_id: NY_CITY_ID })
+    res = zomato_api_call(endpoint: 'cuisines', params: { city_id: NY_CITY_ID })
     return unless res
 
     icons = ('a'..'z').to_a + ('0'..'9').to_a
@@ -23,7 +23,7 @@ class ZomatoAPIManager
 
   def get_restaurants(lat: 40.732013, lon: -73.996155, radius: 4000, start: 0, count: 1000)
     p "start: #{start}"
-    res = zamato_api_call(endpoint: 'search',
+    res = zomato_api_call(endpoint: 'search',
                           params: { lat: lat,
                                     lon: lon,
                                     radius: radius,
@@ -40,7 +40,8 @@ class ZomatoAPIManager
       rest.address = r['restaurant']['location']['address']
       rest.latitude = r['restaurant']['location']['latitude']
       rest.longitude = r['restaurant']['location']['longitude']
-      rest.max_delivery_time_minutes = 0
+      rest.thumb_url = r['restaurant']['thumb']
+      rest.max_delivery_time_minutes = Random.rand(120)
       rest.accepts_10bis = [true, false].sample
       cuisine = r['restaurant']['cuisines'].split(", ")[0]
       rest.cuisine_id = cuisines[cuisine] if cuisines[cuisine]
@@ -50,7 +51,7 @@ class ZomatoAPIManager
     get_restaurants(start: start + res['results_shown'])
   end
 
-  def zamato_api_call(endpoint:, params: {})
+  def zomato_api_call(endpoint:, params: {})
     res = @conn.get "#{BASE_URL}/#{endpoint}", params
     res.success? ? JSON.parse(res.body) : {}
   end

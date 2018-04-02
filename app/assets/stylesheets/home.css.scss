@@ -159,8 +159,16 @@
   }
 
   .restaurants-list-item {
-    margin-left: 10px;
-    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: white;
+    border-bottom: 1px solid #00000030;
+  }
+
+  .restaurants-list-item .disabled {
+
   }
 
   .restaurant-item-rating {
@@ -178,11 +186,41 @@
     height: 30px;
     width: 30px;
   }
+
   .col-md-3 {
-    padding-right: 0 !important;;
+    padding-right: 0 !important;
+  }
+
+  .restaurant-item-delivery {
+    margin-right: 0 !important;
   }
 }
 
 .restaurants-map {
   padding-left: 0 !important;
+}
+
+.info-window-details {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  width: 200px;
+
+  .info-window-img-container {
+    padding: 0 !important;
+  }
+
+  .info-window-img {
+    width: 60px;
+    height:60px;
+  }
+
+  .info-window-icon {
+    font-family: 'ef_cuisinesregular', sans-serif;
+    font-size: 60px;
+    margin-left: 10px;
+  }
+
+  .info-window-title {
+    font-weight: bold;
+  }
 }
