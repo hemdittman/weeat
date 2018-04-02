@@ -5,7 +5,10 @@ import StarRatingComponent from 'react-star-rating-component';
 export default function RestaurantsList(props) {
 
     const restaurantsList = props.restaurants.map(restaurant => {
-        return (<RestaurantItem key={restaurant.id} restaurant={restaurant}/>)
+        return (<RestaurantItem key={restaurant.id}
+                                restaurant={restaurant}
+                                onRestaurantClick={props.onRestaurantClick}
+        />)
     });
 
     return (
@@ -16,13 +19,12 @@ export default function RestaurantsList(props) {
 }
 
 function RestaurantItem(props) {
+    const reviewsText = props.restaurant.reviews_count == 1 ? 'review' : 'reviews';
     const tenbisImg = props.restaurant.accepts_10bis ?
         <Image className='tenbis-img' src='/images/logo10Bis.png' rounded/> : '';
 
-        const reviewsText = props.restaurant.reviews_count == 1 ? 'review' : 'reviews';
-
     return (
-        <ListGroupItem>
+        <ListGroupItem onClick={() => props.onRestaurantClick(props.restaurant)}>
             <div className='restaurants-list-item'>
                 <Row>
                     <Col md={2}>

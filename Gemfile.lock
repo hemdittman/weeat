@@ -45,13 +45,7 @@ GEM
       rake (>= 10.4, < 13.0)
     arel (8.0.0)
     ast (2.4.0)
-    autoprefixer-rails (8.2.0)
-      execjs
     bindex (0.5.0)
-    bootstrap (4.0.0)
-      autoprefixer-rails (>= 6.0.3)
-      popper_js (>= 1.12.9, < 2)
-      sass (>= 3.5.2)
     builder (3.2.3)
     byebug (10.0.1)
     capybara (2.18.0)
@@ -75,6 +69,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.8.7)
       i18n (>= 0.7)
+    faraday (0.14.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -97,6 +93,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    multipart-post (2.0.0)
     nio4r (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -104,7 +101,6 @@ GEM
     parser (2.5.0.5)
       ast (~> 2.4.0)
     pg (1.0.0)
-    popper_js (1.12.9)
     powerpack (0.1.1)
     public_suffix (3.0.2)
     puma (3.11.3)
@@ -224,11 +220,11 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  bootstrap (~> 4.0.0)
   byebug
   capybara (~> 2.13)
   factory_bot_rails (~> 4.0)
   faker
+  faraday
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)

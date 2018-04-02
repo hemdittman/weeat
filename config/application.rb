@@ -14,5 +14,7 @@ module Weeat
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    config.zomato_api_key = '881327dae26dac64c05dea10c5ff4476'
   end
 end

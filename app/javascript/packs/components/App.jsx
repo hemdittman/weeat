@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from "./search_bar";
 import {Col, FormControl, FormGroup, Row} from "react-bootstrap";
 import RestaurantsList from "./restaurants_list";
+import {RestaurantsMap} from "./restaurants_map";
 
 
 class App extends React.Component {
@@ -15,7 +16,8 @@ class App extends React.Component {
             maxDeliveryTime: 120,
             rating: 0,
             only10bis: false,
-            restaurantFilter: ''
+            restaurantFilter: '',
+            mapPosition: {lat: 40.732013, lng: -73.996155}
         };
     }
 
@@ -59,9 +61,13 @@ class App extends React.Component {
         return true;
     };
 
+    handleRestaurantClick = (rest) => {
+        this.setState({mapPosition: {lat: rest.latitude, lng: rest.longitude}})
+    };
+
 
     render() {
-        return(
+        return (
             <div>
                 <Header cuisines={this.state.cuisines}
                         selectedCuisines={this.state.selectedCuisines}
@@ -70,9 +76,12 @@ class App extends React.Component {
                         only10Bis={this.state.only10bis}
                         restaurantsFilter={this.state.restaurantFilter}
                         onFilterChange={this.handleFilterChange.bind(this)}/>
-                <Body restaurants={this.state.filteredRestaurants}/>
+                <Body restaurants={this.state.filteredRestaurants}
+                      mapPosition={this.state.mapPosition}
+                      onRestaurantClick={this.handleRestaurantClick.bind(this)} />
             </div>
-        )}
+        )
+    }
 }
 
 function Header(props) {
@@ -82,9 +91,9 @@ function Header(props) {
                 <div className='title'>we eat</div>
             </Row>
             <RestaurantSearch restaurantsFilter={props.restaurantFilter}
-                              onFilterChange={props.onFilterChange}/>
+                              onFilterChange={props.onFilterChange} />
             <SearchBar cuisines={props.cuisines}
-                       onFilterChange={props.onFilterChange}/>
+                       onFilterChange={props.onFilterChange} />
         </div>
     );
 }
@@ -95,8 +104,7 @@ function RestaurantSearch(props) {
             <FormControl type='text'
                          placeholder='Search Restaurant...'
                          onChange={(e) => {
-                             props.onFilterChange({restaurantFilter: e.target.value});
-                         }} />
+                             props.onFilterChange({restaurantFilter: e.target.value});}} />
         </FormGroup>
     )
 }
@@ -106,13 +114,21 @@ function Body(props) {
         <div>
             <Row>
                 <Col md={4} className='restaurants-list'>
-                    <RestaurantsList restaurants={props.restaurants} />
+                    <RestaurantsList restaurants={props.restaurants}
+                                     onRestaurantClick={props.onRestaurantClick} />
                 </Col>
                 <Col md={8} className='restaurants-map'>
+                    <RestaurantsMap
+                        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+                        loadingElement={<div style={{height: '100%'}} />}
+                        containerElement={<div style={{height: '100%'}} />}
+                        mapElement={<div style={{height: '100%'}} />}
+                        center={props.mapPosition}
+                        restaurants={props.restaurants}/>
                 </Col>
             </Row>
         </div>
-    )
+    );
 }
 
 export default App;

@@ -140,9 +140,11 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      text-align: left;
     }
 
     .restaurant-address {
+      text-align: left;
       font-size: 15px;
       white-space: nowrap;
       overflow: hidden;
@@ -152,8 +154,8 @@
 
   .logo10bis {
     padding-left: 0 !important;
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
   }
 
   .restaurants-list-item {
@@ -179,4 +181,8 @@
   .col-md-3 {
     padding-right: 0 !important;;
   }
+}
+
+.restaurants-map {
+  padding-left: 0 !important;
 }
